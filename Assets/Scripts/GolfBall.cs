@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 
@@ -9,6 +10,8 @@ public class GolfBall : MonoBehaviour {
 
     public Transform ballstick;
     public bool hasBeenTouched;
+    public Text displayComponent;
+    private int count;
 
     void Stop()
     {
@@ -18,7 +21,8 @@ public class GolfBall : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         hasBeenTouched = false;
-
+        count = 0;
+        SetCounterText();
     }
 	
 	// Update is called once per frame
@@ -36,6 +40,8 @@ public class GolfBall : MonoBehaviour {
             Stop();
             Instantiate(ballstick, this.transform.position, new Quaternion(0,0,0,0));
             hasBeenTouched = false;
+            count++;
+            SetCounterText();
         }
 
         if (Input.GetKeyDown("k"))
@@ -43,6 +49,11 @@ public class GolfBall : MonoBehaviour {
             EndCourse();
         }
 	}
+
+    private void SetCounterText()
+    {
+        displayComponent.text = "Hits so far: " + count.ToString();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
