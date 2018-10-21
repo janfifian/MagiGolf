@@ -26,13 +26,13 @@ public class GolfBall : MonoBehaviour {
 
         if(GetComponent<Rigidbody>().velocity.magnitude > 0.5)
         {
-            Debug.Log("Rolling");
+        //    Debug.Log("Rolling");
             hasBeenTouched = true;
         }
 
         if (hasBeenTouched && GetComponent<Rigidbody>().velocity.magnitude < 1 && GetComponent<Rigidbody>().velocity.magnitude > 0.0)
         {
-            Debug.Log("Drop the base");
+        //    Debug.Log("Drop the base");
             Stop();
             Instantiate(ballstick, this.transform.position, new Quaternion(0,0,0,0));
             hasBeenTouched = false;
