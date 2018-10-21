@@ -38,16 +38,29 @@ public class GolfBall : MonoBehaviour {
             hasBeenTouched = false;
         }
 
+        if (Input.GetKeyDown("k"))
+        {
+            EndCourse();
+        }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Hole")
         {
-            Destroy(this);
-            Debug.Log("Epic Win!");
-            SceneManager.UnloadSceneAsync("Course1");
-            SceneManager.LoadScene("Course2");
+            EndCourse();
         }
+
+    }
+    IEnumerator delayedLoad()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("Loading Course No 2");
+        SceneManager.LoadScene("Course2");
+    }
+    void EndCourse()
+    {
+        StartCoroutine(delayedLoad());
+        Debug.Log("Epic Win!");
     }
 }
