@@ -62,7 +62,10 @@ public class CameraControl : MonoBehaviour {
         {
             transform.Translate(0, 0, -0.5f);
         }
-        GetComponent<Rigidbody>().velocity = new Vector3 (0.0f, 0.0f, ballposition.GetComponent<Rigidbody>().velocity.z);
+        if (ballposition != null)
+        {
+            GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, ballposition.GetComponent<Rigidbody>().velocity.z);
+        }
         float fov = Camera.main.fieldOfView;
         fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
         fov = Mathf.Clamp(fov, minFov, maxFov);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -43,8 +44,10 @@ public class GolfBall : MonoBehaviour {
     {
         if(other.name == "Hole")
         {
-            Destroy(gameObject);
+            Destroy(this);
             Debug.Log("Epic Win!");
+            SceneManager.UnloadSceneAsync("Course1");
+            SceneManager.LoadScene("Course2");
         }
     }
 }
