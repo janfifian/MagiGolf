@@ -19,6 +19,13 @@ public class KijGolfowyPlebEdition : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.name == "GolfBall")
+        {
+            GameObject foo;
+            foo = transform.parent.gameObject;
+            transform.parent = null;
+            Destroy(foo);
+            Destroy(gameObject);
+        }
     }
 }
