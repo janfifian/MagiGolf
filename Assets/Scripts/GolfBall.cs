@@ -12,7 +12,6 @@ public class GolfBall : MonoBehaviour {
     public bool hasBeenTouched;
     public Text displayComponent;
     private int count;
-
     void Stop()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
@@ -27,7 +26,7 @@ public class GolfBall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         if(GetComponent<Rigidbody>().velocity.magnitude > 0.5)
         {
         //    Debug.Log("Rolling");
