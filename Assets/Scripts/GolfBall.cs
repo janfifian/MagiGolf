@@ -19,6 +19,7 @@ public class GolfBall : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
+        Instantiate(ballstick, this.transform.position, new Quaternion(0, 0, 0, 0));
         hasBeenTouched = false;
         count = 0;
         SetCounterText();
