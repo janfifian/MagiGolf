@@ -5,7 +5,7 @@ public class CameraControl : MonoBehaviour {
     private Transform _XForm_Parent;
 
     private Vector3 _LocalRotation;
-    private float _CameraDistance = 10f;
+    public float _CameraDistance = 10f;
 
     public float MouseSensitivity = 4f;
     public float ScrollSensitivity = 2f;
@@ -34,7 +34,7 @@ public class CameraControl : MonoBehaviour {
                 _LocalRotation.y -= Input.GetAxis("Mouse Y") * MouseSensitivity;
                 
                 //Podnoszenie kamery od podłoża do kąta prostego
-                _LocalRotation.y = Mathf.Clamp(_LocalRotation.y, 0f, 90f);
+                _LocalRotation.y = Mathf.Clamp(_LocalRotation.y, 10f, 90f);
             }
 
             if (Input.GetAxis("Mouse ScrollWheel") != 0f)
