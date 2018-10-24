@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1421653239369688}
   m_LocalRotation: {x: 0.044752773, y: -0, z: -0, w: 0.9989981}
-  m_LocalPosition: {x: -9.712, y: 14.68, z: -31.68}
+  m_LocalPosition: {x: -9.712, y: 14.68, z: -45}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 4673336567614394}
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b81c861f48be6a4bbd16b4e0d461068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _CameraDistance: 45
   MouseSensitivity: 4
   ScrollSensitivity: 2
   OrbitDampening: 10
   ScrollDampening: 6
   MaxCameraDistance: 60
   MinCameraDistance: 20
-  CameraDisabled: 0
