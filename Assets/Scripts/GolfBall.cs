@@ -104,7 +104,7 @@ public class GolfBall : MonoBehaviour {
     {
         yield return new WaitForSeconds(3);
         Debug.Log("Loading Course No 2");
-        SceneManager.LoadScene("Course2");
+        SceneManager.LoadSceneAsync("Course2");
     }
     void EndCourse()
     {
