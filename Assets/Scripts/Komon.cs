@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 
 
-public class GolfBall : MonoBehaviour {
+public class Komon : MonoBehaviour
+{
 
     public bool hasBeenTouched;
     public Text displayComponent;
@@ -14,21 +15,25 @@ public class GolfBall : MonoBehaviour {
     public Slider V_Slider;
     public Rigidbody rb;
     public float MaxPower;
+    public float boostPower;
 
+    private bool boostUsable;
     private int counter;
     private int count;
     private float percentageOfHPower;
     private float percentageOfVPower;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         hasBeenTouched = false;
         count = 0;
         SetCounterText();
         counter = 0;
+        boostUsable = false;
     }
-	
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
     {
         if (GetComponent<Rigidbody>().velocity.magnitude == 0)
         {
@@ -43,7 +48,7 @@ public class GolfBall : MonoBehaviour {
                 percentageOfHPower = H_Slider.value;
                 V_Slider.GetComponent<SliderMovement>().Enable();
             }
-            
+
             if (counter == 2)
             {
                 V_Slider.GetComponent<SliderMovement>().isEnabled = false;
@@ -52,13 +57,14 @@ public class GolfBall : MonoBehaviour {
 
             if (counter == 3)
             {
-                
+
                 rb.AddForce(Camera.main.transform.forward.x * MaxPower * percentageOfHPower,
-                    Camera.main.transform.forward.y * MaxPower * percentageOfVPower, 
+                    Camera.main.transform.forward.y * MaxPower * percentageOfVPower,
                     Camera.main.transform.forward.z * MaxPower * percentageOfHPower);
                 counter = 0;
-                    count++;
-                    SetCounterText();
+                count++;
+                SetCounterText();
+                boostUsable = true;
             }
         }
         if (GetComponent<Rigidbody>().velocity.magnitude > 0)
@@ -68,26 +74,28 @@ public class GolfBall : MonoBehaviour {
             H_Slider.GetComponent<SliderMovement>().isEnabled = true;
             V_Slider.GetComponent<SliderMovement>().isEnabled = true;
         }
-        
 
-        //if (GetComponent<Rigidbody>().velocity.magnitude > 0.5)
-        //{
-        //    hasBeenTouched = true;
-        //}
-
-        //if (hasBeenTouched && GetComponent<Rigidbody>().velocity.magnitude < 1 && GetComponent<Rigidbody>().velocity.magnitude > 0.0)
-        //{
-        ////    Debug.Log("Drop the base");
-        //    hasBeenTouched = false;
-        //    count++;
-        //    SetCounterText();
-        //}
+        if (Input.GetKeyDown("f") && boostUsable)
+        {
+            rb.AddForce(Camera.main.transform.forward.x * boostPower,
+                    Camera.main.transform.forward.y * boostPower,
+                    Camera.main.transform.forward.z * boostPower);
+            boostUsable = false;
+        }
 
         if (Input.GetKeyDown("k"))
         {
             EndCourse();
         }
-	}
+
+        if(this.transform.position.y < -10)
+        {
+            rb.velocity.Set(0, 0, 0);
+            rb.angularVelocity.Set(0, 0, 0);
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+
+    }
 
     private void SetCounterText()
     {
@@ -96,7 +104,7 @@ public class GolfBall : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Hole")
+        if (other.name == "Hole")
         {
             EndCourse();
         }
