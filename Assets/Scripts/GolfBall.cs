@@ -87,7 +87,14 @@ public class GolfBall : MonoBehaviour {
         {
             EndCourse();
         }
-	}
+
+        if (this.transform.position.y < -10)
+        {
+            rb.velocity.Set(0, 0, 0);
+            rb.angularVelocity.Set(0, 0, 0);
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+    }
 
     private void SetCounterText()
     {
